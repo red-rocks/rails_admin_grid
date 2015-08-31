@@ -131,7 +131,7 @@
               .panel.panel-default
                 .panel-body
                   %a{href: show_path(model_name: @abstract_model.to_param, id: object.try(:id))}
-                    %div{style: "height: 200px;"}
+                    %div
                       - if @model_config.grid.thumbnail_method
                         -img_src = object.send(@model_config.grid.thumbnail_method)
                         %img.img-responsive.center-block.center-vert{src: img_src, alt: "View #{@abstract_model}", style: "max-height: 100%;"}
