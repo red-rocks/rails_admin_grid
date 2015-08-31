@@ -132,8 +132,14 @@
                 .panel-body
                   %a{href: show_path(model_name: @abstract_model.to_param, id: object.try(:id))}
                     %div{style: "height: 200px;"}
-                      -img_src = @model_config.grid.thumbnail_method ? object.send(@model_config.grid.thumbnail_method) : nil
-                      %img.img-responsive.center-block.center-vert{src: img_src, alt: "View #{@abstract_model}", style: "max-height: 100%;"}
+                      - if @model_config.grid.thumbnail_method
+                        -img_src = object.send(@model_config.grid.thumbnail_method)
+                        %img.img-responsive.center-block.center-vert{src: img_src, alt: "View #{@abstract_model}", style: "max-height: 100%;"}
+                      - elsif @model_config.grid.html_method
+                        - embedded_html = object.send(@model_config.grid.html_method)
+                        = embedded_html.html_safe
+                      - else
+                        = "You must specify 'thumbnail_method' or 'html_method' method"
                   %br
                   .text-center= check_box_tag "bulk_ids[]", object.id, false
                 .panel-footer

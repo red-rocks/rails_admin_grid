@@ -9,6 +9,10 @@ module RailsAdmin
         register_instance_option :thumbnail_method do
           nil
         end
+
+        register_instance_option :html_method do
+          nil
+        end
       end
     end
   end
