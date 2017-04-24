@@ -6,6 +6,7 @@ module RailsAdmin
     module Sections
       # Configuration of the explore view
       class Grid < List
+
         register_instance_option :thumbnail_method do
           nil
         end
@@ -18,6 +19,11 @@ module RailsAdmin
         register_instance_option :visible do
           true
         end
+
+        register_instance_option :only_fields do
+          [:enabled, :name, :title]
+        end
+
       end
     end
   end

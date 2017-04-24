@@ -11,6 +11,7 @@
   export_action = nil unless export_action && authorized?(export_action.authorization_key, @abstract_model)
   description = RailsAdmin.config(@abstract_model.model_name).description
   properties = @model_config.grid.with(controller: self.controller, view: self, object: @abstract_model.model.new).visible_fields
+  properties.select! { |p| @model_config.grid.only_fields.include?(p.name) }
   # columns paginate
   sets = get_column_sets(properties)
   properties = sets[params[:set].to_i] || []
@@ -48,7 +49,7 @@
   .center-vert {
     position: relative;
     top: 50%;
-    transform: translateY(-50%);
+    /*transform: translateY(-50%);*/
   }
 #list
   = form_tag(grid_path(params.except(*%w[page f query])), method: :get, class: "pjax-form form-inline") do
