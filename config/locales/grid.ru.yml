@@ -1,0 +1,8 @@
+ru:
+  admin:
+    actions:
+      grid:
+        title: "Сетка для %{model_label_plural}"
+        menu: "Сетка"
+        breadcrumb: "Сетка"
+        link: "Сетка"

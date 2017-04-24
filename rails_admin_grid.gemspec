@@ -7,9 +7,9 @@ require "rails_admin_grid/version"
 Gem::Specification.new do |s|
   s.name        = "rails_admin_grid"
   s.version     = RailsAdminGrid::VERSION
-  s.authors     = ["Michael Colavita"]
-  s.email       = ["colavitam@gmail.com"]
-  s.homepage    = "https://github.com/colavitam/rails_admin_grid"
+  s.authors     = ["Alexander Kiseliev", "Michael Colavita"]
+  s.email       = ["dev@redrocks.pro", "colavitam@gmail.com"]
+  s.homepage    = "https://github.com/red-rocks/rails_admin_grid"
   s.summary     = "A custom RailsAdmin action to display objects in a grid."
   s.description = "RailsAdminGrid is a custom action for RailsAdmin that displays objects in a grid with thumbnails. It provides an alternative to the default list view provided in RailsAdmin."
   s.license     = "MIT"

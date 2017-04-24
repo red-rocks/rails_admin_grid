@@ -1,4 +1,5 @@
 :ruby
+  puts @model_config.class
   query = params[:query]
   params = request.params.except(:authenticity_token, :action, :controller, :utf8, :bulk_export, :_pjax)
   params.delete(:query) if params[:query].blank?
@@ -87,6 +88,7 @@
                 .panel-body
                   %a{href: show_path(model_name: @abstract_model.to_param, id: object.try(:id))}
                     %div
+                      -# = @model_config.grid.inspect
                       - if @model_config.grid.thumbnail_method
                         -img_src = object.send(@model_config.grid.thumbnail_method)
                         %img.img-responsive.center-block.center-vert{src: img_src, alt: "View #{@abstract_model}", style: "max-height: 100%;"}
@@ -94,7 +96,7 @@
                         - embedded_html = object.send(@model_config.grid.html_method)
                         = embedded_html.html_safe
                       - else
-                        = "You must specify 'thumbnail_method' or 'html_method' method"
+                        -# = "You must specify 'thumbnail_method' or 'html_method' method"
                   %br
                   .text-center= check_box_tag "bulk_ids[]", object.id, false
                 .panel-footer
@@ -106,13 +108,13 @@
                   .list-inline.text-center
                     =menu_for :member, @abstract_model, object, true
 
-    - if @objects.respond_to?(:total_count)
-      - total_count = @objects.total_count.to_i
-      .row
-        .col-md-6= paginate(@objects, theme: 'ra-twitter-bootstrap', remote: true)
-      .row
-        .col-md-6= link_to(t("admin.misc.show_all"), grid_path(params.merge(all: true)), class: "show-all btn btn-default clearfix pjax") unless total_count > 100 || total_count <= @objects.to_a.size
-      .clearfix.total-count= "#{total_count} #{@model_config.pluralize(total_count).downcase}"
-
-    - else
-      .clearfix.total-count= "#{@objects.size} #{@model_config.pluralize(@objects.size).downcase}"
+    -# - if @objects.respond_to?(:total_count)
+    -#   - total_count = @objects.total_count.to_i
+    -#   .row
+    -#     .col-md-6= paginate(@objects, theme: 'ra-twitter-bootstrap', remote: true)
+    -#   .row
+    -#     .col-md-6= link_to(t("admin.misc.show_all"), index_path(params.merge(all: true)), class: "show-all btn btn-default clearfix pjax") unless total_count > 100 || total_count <= @objects.to_a.size
+    -#   .clearfix.total-count= "#{total_count} #{@model_config.pluralize(total_count).downcase}"
+    -#
+    -# - else
+    -#   .clearfix.total-count= "#{@objects.size} #{@model_config.pluralize(@objects.size).downcase}"

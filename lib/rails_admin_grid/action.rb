@@ -4,16 +4,8 @@ require 'rails_admin/config/actions/base'
 module RailsAdmin
   module Config
     module Actions
-      class Grid < Base
+      class Grid < Index
         RailsAdmin::Config::Actions.register(self)
-        
-        register_instance_option :collection do
-          true
-        end
-
-        register_instance_option :http_methods do
-          [:get, :post]
-        end
 
         register_instance_option :route_fragment do
           'grid'
@@ -32,9 +24,17 @@ module RailsAdmin
                 @objects = @objects.send(params[:scope].to_sym)
               end
             end
-            
+
             render @action.template_name, status: (flash[:error].present? ? :not_found : 200)
           end
+        end
+
+        register_instance_option :thumbnail_method do
+          nil
+        end
+
+        register_instance_option :html_method do
+          nil
         end
 
         register_instance_option :link_icon do
@@ -44,7 +44,3 @@ module RailsAdmin
     end
   end
 end
-
-
-
-
