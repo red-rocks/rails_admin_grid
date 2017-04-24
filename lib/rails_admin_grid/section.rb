@@ -12,6 +12,12 @@ module RailsAdmin
         register_instance_option :html_method do
           nil
         end
+        register_instance_option :in_a_row do
+          4
+        end
+        register_instance_option :visible do
+          true
+        end
       end
     end
   end

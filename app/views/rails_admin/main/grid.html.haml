@@ -80,7 +80,7 @@
         %strong= description
 
     .container-fluid
-      - @objects.each_slice(4) do |object_row|
+      - @objects.each_slice(@model_config.grid.in_a_row) do |object_row|
         .row
           -object_row.each do |object|
             .col-md-3{class: "#{@abstract_model.param_key}_row"}
