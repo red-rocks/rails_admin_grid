@@ -17,7 +17,7 @@ module RailsAdmin
           4
         end
         register_instance_option :visible do
-          true
+          false
         end
 
         register_instance_option :only_fields do
